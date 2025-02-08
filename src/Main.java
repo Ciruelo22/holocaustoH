@@ -73,11 +73,18 @@ public class Main {
 					numMov = Juego.lanzarDado(10);
 					System.out.println("[MOVIMIENTO COLUMNAS/X] ¿Cuantas columnas quieres moverte? Tienes " + numMov + " movimientos");
 					int numColumnas = in.nextInt();
-					jugador.movX(numColumnas);
-					numMov -= numColumnas;
-					System.out.println("[MOVIMIENTO FILAS/Y] ¿Cuantas filas quieres moverte? Tienes " + numMov + " movimientos");
-					int numFilas = in.nextInt();
-					jugador.movY(numFilas);
+					//Comprobar que el número de posiciones que se quiere mover este dentro de los movimientos que puede hacer
+					if(numColumnas <= numMov) {
+						jugador.movX(numColumnas);
+						numMov -= numColumnas;
+						//Comprobar que quedan movimientos
+						if(numMov > 0) {
+							System.out.println("[MOVIMIENTO FILAS/Y] ¿Cuantas filas quieres moverte? Tienes " + numMov + " movimientos");
+							int numFilas = in.nextInt();
+							//Comprobar que el número de posiciones que se quiere mover este dentro de los movimientos que puede hacer
+							if(numFilas <= numMov) jugador.movY(numFilas);
+						}
+					}
 					//Comprobamos si hay un objeto en la posición actual
 					objeto = hab1.hayObjetoSinJugador(jugador.getPos());
 					break;
