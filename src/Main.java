@@ -60,6 +60,8 @@ public class Main {
 		while(accionJuego != Juego.SALIR_JUEGO) {
 			
 			int numMov = 0;
+			int numColumnas = 0;
+			int numFilas = 0;
 			
 			//Pintamos la habitacion
 			Juego.pintarHabitacion(hab1);
@@ -71,19 +73,23 @@ public class Main {
 			
 				case Juego.LANZAR_DADO:
 					numMov = Juego.lanzarDado(10);
-					System.out.println("[MOVIMIENTO COLUMNAS/X] ¿Cuantas columnas quieres moverte? Tienes " + numMov + " movimientos");
-					int numColumnas = in.nextInt();
 					//Comprobar que el número de posiciones que se quiere mover este dentro de los movimientos que puede hacer
-					if(numColumnas <= numMov) {
-						jugador.movX(numColumnas);
-						numMov -= numColumnas;
-						//Comprobar que quedan movimientos
-						if(numMov > 0) {
+					do{
+						System.out.println("[MOVIMIENTO COLUMNAS/X] ¿Cuantas columnas quieres moverte? Tienes " + numMov + " movimientos");
+						numColumnas = in.nextInt();
+					}while(numColumnas > numMov || numColumnas < 0);
+
+					jugador.movX(numColumnas);
+					numMov -= numColumnas;
+					//Comprobar que quedan movimientos
+					if(numMov > 0) {
+						//Comprobar que el número de posiciones que se quiere mover este dentro de los movimientos que puede hacer
+						do{
 							System.out.println("[MOVIMIENTO FILAS/Y] ¿Cuantas filas quieres moverte? Tienes " + numMov + " movimientos");
-							int numFilas = in.nextInt();
-							//Comprobar que el número de posiciones que se quiere mover este dentro de los movimientos que puede hacer
-							if(numFilas <= numMov) jugador.movY(numFilas);
-						}
+							numFilas = in.nextInt();
+						}while(numFilas > numMov || numFilas < 0);
+
+						jugador.movY(numFilas);
 					}
 					//Comprobamos si hay un objeto en la posición actual
 					objeto = hab1.hayObjetoSinJugador(jugador.getPos());
