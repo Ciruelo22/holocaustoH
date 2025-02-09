@@ -73,21 +73,21 @@ public class Main {
 			
 				case Juego.LANZAR_DADO:
 					numMov = Juego.lanzarDado(10);
-					//Comprobar que el número de posiciones que se quiere mover este dentro de los movimientos que puede hacer
+					//Comprobar que numColumnas este dentro de los movimientos que pueden hacer y que el jugador no salga del mapa
 					do{
 						System.out.println("[MOVIMIENTO COLUMNAS/X] ¿Cuantas columnas quieres moverte? Tienes " + numMov + " movimientos");
 						numColumnas = in.nextInt();
-					}while(numColumnas > numMov || numColumnas < 0);
+					}while(numColumnas > numMov || (jugador.getPos().getX() + numColumnas + 1) >= Habitacion.ANCHO || jugador.getPos().getX() + numColumnas <= 0);
 
 					jugador.movX(numColumnas);
-					numMov -= numColumnas;
+					numMov -= Math.abs(numColumnas);
 					//Comprobar que quedan movimientos
 					if(numMov > 0) {
-						//Comprobar que el número de posiciones que se quiere mover este dentro de los movimientos que puede hacer
+						//Comprobar que numFilas este dentro de los movimientos que pueden hacer y que el jugador no salga del mapa
 						do{
 							System.out.println("[MOVIMIENTO FILAS/Y] ¿Cuantas filas quieres moverte? Tienes " + numMov + " movimientos");
 							numFilas = in.nextInt();
-						}while(numFilas > numMov || numFilas < 0);
+						}while(numFilas > numMov || (jugador.getPos().getY() + numFilas + 1) >= Habitacion.ALTO || jugador.getPos().getY() + numFilas <= 0);
 
 						jugador.movY(numFilas);
 					}
