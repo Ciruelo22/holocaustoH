@@ -1,13 +1,13 @@
 
 /*
- * Objeto que se puede almacenar en una habitacion
+ * Objeto que se puede almacenar dentro de una habitacion
  * 
  * @author Joel Nassar
  * 
  * @version 1.0
  * @see holocaustoH.ObjetoJuego
  */
-public class Objeto {
+public class Objeto extends ObjetoJuego{
 	//Propiedades
 	private int peso = 0;
 	/*
@@ -18,17 +18,17 @@ public class Objeto {
 		
 	}
 	/*
-	 * getPeso devuelve el peso del objeto
+	 * getPeso Getter peso
 	 * 
-	 * @return int peso del objeto
+	 * @return int peso
 	 */
 	public int getPeso() {
 		return peso;
 	}
 	/*
-	 * setPeso sobrescribe el peso del objeto
+	 * setPeso Setter peso
 	 * 
-	 * @param int peso del objeto
+	 * @param int peso
 	 */
 	public void setPeso(int peso) {
 		this.peso = peso;
